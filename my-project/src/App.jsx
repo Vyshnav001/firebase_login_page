@@ -6,6 +6,7 @@ import { auth } from './config/firebase'
 import {createUserWithEmailAndPassword} from 'firebase/auth'
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useEffect } from 'react';
+import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
 
 
 export default function Login_page() {
@@ -14,6 +15,8 @@ export default function Login_page() {
   const [userDetails, setUserDetails] = useState ("")
   const [login,setLogin] = useState()
   const [userState,setUserState] =useState("")
+  const [passwordState,setPasswordState] = useState("password")
+  const [eye,setEye] = useState(false)
   console.log(email)
 
   const refresh = ()=>{
@@ -61,10 +64,23 @@ else {
 
 }
 
-const valueChange = (e)=>{
-  e.target.value = ''
+const showPassword = ()=>{
+  if(passwordState === "password"){
+    setEye(true)
+    setPasswordState("text")
+  }
+  else{
+    setEye(false)
+    setPasswordState("password")
+  }
+  
 
 }
+
+// const valueChange = (e)=>{
+//   e.target.value = ''
+
+// }
 
   return (
     <>
@@ -73,16 +89,20 @@ const valueChange = (e)=>{
     
     <div className='flex justify-center flex-col items-center '>
     Email:<br/>
-   <input className='border-red-600 border-2 w-72' type='email' required = "required" placeholder='Email'   onChange={e => setEmail(e.target.value)}/>
+   <input className='border-red-600 border-2 w-72 h-10 placeholder:text-center' type='email' required = "required" placeholder='Email'   onChange={e => setEmail(e.target.value)}/>
 
    Password:<br/>
-   <input className='border-red-600 border-2  w-72' type='password' required = "required" placeholder='Password'  onChange={e => setPassword(e.target.value)}/>
-
+   <input  className='border-red-600 border-2  w-72 h-10 placeholder:text-center' type={passwordState} required = "required" placeholder='Password'  onChange={e => setPassword(e.target.value)}/> 
+   {eye? <AiOutlineEye className='absolute top-[100px] left-[760px]' onClick={showPassword} /> : <AiOutlineEyeInvisible className='absolute top-[100px] left-[760px]' onClick={showPassword}/>}
+   
 
    <button onClick={signIn} className='w-20 border mt-10 text-xl p-2 hover:bg-black hover:text-white'>Login</button>
 
    {/* <button onClick={getuser} className='w-20 border mt-10 text-xl p-2 hover:bg-black hover:text-white'>Get user details</button> */}
    <button onClick={refresh} className='w-20 border mt-10 text-xl p-2 hover:bg-black hover:text-white'>Refresh</button>
+  
+   
+
    <div>
    <h1 className='font-bold'>{userState}</h1>
 
