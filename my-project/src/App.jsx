@@ -73,10 +73,10 @@ const valueChange = (e)=>{
     
     <div className='flex justify-center flex-col items-center '>
     Email:<br/>
-   <input className='border-red-600 border-2 w-1/4' type='email' required = "required" placeholder='Email'   onChange={e => setEmail(e.target.value)}/>
+   <input className='border-red-600 border-2 w-72' type='email' required = "required" placeholder='Email'   onChange={e => setEmail(e.target.value)}/>
 
    Password:<br/>
-   <input className='border-red-600 border-2  w-1/4' type='password' required = "required" placeholder='Password'  onChange={e => setPassword(e.target.value)}/>
+   <input className='border-red-600 border-2  w-72' type='password' required = "required" placeholder='Password'  onChange={e => setPassword(e.target.value)}/>
 
 
    <button onClick={signIn} className='w-20 border mt-10 text-xl p-2 hover:bg-black hover:text-white'>Login</button>
